@@ -1,0 +1,78 @@
+* {
+	transition:0.3s;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+
+	background: #e3e3e3;
+	font-family: "Roboto Condensed", sans-serif;
+	text-align: center;
+}
+
+/* Header */
+header {
+	padding: 20px;
+	font-size: 40px;
+	color: black;
+}
+
+
+/* Subheader */
+.turnExplanation{
+	margin: 20px;
+	font-size: 25px;
+}
+#goal{
+	margin: 20px;
+	font-size: 25px;
+}
+#controls{
+	font-size: 15px;
+	color: #363636;
+	/*margin-top: px;*/
+
+}
+
+
+/* Center Area */
+.middle {
+	color: black;
+	position: relative;
+}
+
+#gameBoard {
+	border-radius: 10px;
+	border: 5px solid black;
+}
+
+
+/* Information */
+.button {
+	font-size: 30px;
+	width: 100px;
+	height: 100px;
+	border-radius: 10px;
+	padding: 2px 2px;
+	margin: 2px;
+	border: 5px solid black;
+	transition: 0.3s;
+}
+
+.button:hover {
+	background: #8a8a8a;
+}
+
+#analyze {
+	position: absolute;
+	top: 300px;
+	left: calc(50% + 270px);
+}
+
+#settings {
+	position: absolute;
+	top: 410px;
+	left: calc(50% + 270px);
+}
