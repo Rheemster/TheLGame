@@ -8,8 +8,16 @@ This is a small app based on this video by VSauce2.  I made this project to lear
 
 Current status: 
 0.1 
+* Initial commit
 * The function to prevent overlap before passing turn is completely breaking the app.
 
 0.2 
 * Overlap function overhauled, still doesn't quite work currently. 
-* \nL color switching fixed, coins now overlap L's on coin turns.
+* L color switching fixed, coins now overlap L's on coin turns.
+
+TODO:
+* Prevent overlap
+* Only allow one coin movement per turn
+* Check win condition
+* Add bot player
+* Add analytics and information tabs
