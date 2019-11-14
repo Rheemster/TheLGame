@@ -9,6 +9,7 @@ var board = [["blank", "a", "a", "coin1"],
 			["blank", "a", "b", "blank"],
 			["blank", "a", "b", "blank"],
 			["coin2", "b", "b", "blank"]];
+var tempCoins = [[0, 3], [3, 0]]
 
 
 
@@ -46,7 +47,8 @@ function keyPressed(event) {
 		case 13:
 			console.log("Enter");
 			console.log(pieceList.length);
-			if (overlap(pieceList, board, turn)){
+			
+			if (overlap(turn)){
 				if (turn == 3){
 					turn = 0;
 				} else {
@@ -62,13 +64,17 @@ function keyPressed(event) {
 			} else {
 				document.getElementById("goal").innerHTML = "Move to a valid space!";
 			}
-			console.log(pieceList.length);
 	}
 	if (turn == 0){
 		board = updateBoard(playerB, playerA, coins.location[0], coins.location[1], board, turn);
 	}
-	else {
-		board = updateBoard(playerA, playerB, coins.location[0], coins.location[1], board, turn);
+	else if (turn == 2){
+		board = updateBoard(playerB, playerA, coins.location[0], coins.location[1], board, turn);
+	} else if (turn == 1){
+		board = updateBoard(playerB, playerA, coins.location[0], coins.location[1], board, turn);
+	}
+	else if (turn == 3){
+		board = updateBoard(playerB, playerA, coins.location[0], coins.location[1], board, turn);
 	}
 	display(board);
 }
