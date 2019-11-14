@@ -10,4 +10,4 @@ Current status:
 0.1 ~~The function to prevent overlap before passing turn is completely breaking the app.~~
 
 0.2 Overlap function overhauled, still doesn't quite work currently. 
-    L color switching fixed, coins now overlap L's on coin turns.
+    \nL color switching fixed, coins now overlap L's on coin turns.
