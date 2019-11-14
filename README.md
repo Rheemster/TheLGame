@@ -6,4 +6,4 @@ This is a small app based on this video by VSauce2.  I made this project to lear
 
 
 
-Current objective: The function to prevent overlap before passing turn is completely breaking the app.
+Current status: The function to prevent overlap before passing turn is completely breaking the app.
