@@ -1,3 +1,5 @@
+//Coin object, contains coordinates for both coins keeps track of the currently selected coin
+
 function coins(coin0, coin1){
 	this.location = [coin0, coin1];
 	this.selectedCoin = 0;
@@ -10,6 +12,7 @@ function coins(coin0, coin1){
 	}
 	this.move = function(direction){
 		switch(direction){
+			
 			case "up":
 				if (this.location[this.selectedCoin][0] - 1 >= 0){
 					this.location[this.selectedCoin][0] -= 1;
@@ -30,6 +33,7 @@ function coins(coin0, coin1){
 					this.location[this.selectedCoin][1] += 1;
 				}
 				break;
+			
 		}
 	}
 }

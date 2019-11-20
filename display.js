@@ -3,12 +3,13 @@ var boardCtx = canvas.getContext("2d");
 boardCtx.lineWidth = 5;
 
 function display(boardD){
+
+	//Clear the canvas
+	boardCtx.clearRect(0, 0, canvas.width, canvas.height);
+	console.log(boardD);
 	for (i = 0; i <= 3; i++){
 		for (j = 0; j <= 3; j++){
-			boardCtx.lineWidth = 10;
-			boardCtx.fillStyle = "#e3e3e3";
-			boardCtx.strokeStyle = "#e3e3e3";
-			boardCtx.fillRect(i * (canvas.width / 4), j * (canvas.height / 4), canvas.width/4, canvas.height/4)
+			//Dictate what color each circle should be
 			switch (boardD[j][i]){
 				case "blank":
 					boardCtx.lineWidth = 12;
@@ -38,6 +39,7 @@ function display(boardD){
 
 
 			}
+			//Draw each circle
 			boardCtx.beginPath();
 			boardCtx.arc(((i * (canvas.width / 4)) + canvas.width / 8), ((j * (canvas.height / 4)) + canvas.height / 8), (canvas.width / 8) * (3/4), 0, Math.PI * 2, true);
 			boardCtx.fill();
@@ -49,6 +51,7 @@ function display(boardD){
 }
 
 function checkLocation (x, y, list){
+	//Supplementary function to see if a list contains a specific coordinate
 	for (i = 0; i < list.length; i++){
 		if (list[i][1] == x && list[i][0] == y){
 			return true;
@@ -58,16 +61,12 @@ function checkLocation (x, y, list){
 }
 
 function updateBoard(pA, pB, c1, c2, boardU, turn){
-	/*if (turn == 0){
-		pASymbol = "b";
-		pBSymbol = "a";
-	} else if (turn == 2){
-		pASymbol = "a";
-		pBSymbol = "b";
-	}*/
+
 	for (x = 0; x <= 3; x++){
 		for (y = 0; y <= 3; y++){
-			if (turn == 0){
+
+			//Different cases depending on turn to have correct overlap 
+			if (turn == 0){ // Player A turn
 				if (checkLocation(x, y, pB.location)){
 					boardU[x][y] = "a";
 				}
@@ -75,32 +74,32 @@ function updateBoard(pA, pB, c1, c2, boardU, turn){
 					boardU[x][y] = "b";
 				}
 				else if ((x == c1[0]) && (y == c1[1])){
-				boardU[x][y] = "coin1";
+					boardU[x][y] = "coin2";
 				}
 				else if ((x == c2[0]) && (y == c2[1])){
-					boardU[x][y] = "coin2";
+					boardU[x][y] = "coin1";
 				} else {
 					boardU[x][y] = "blank";
 				}
-			} else if (turn == 2) {
+			} else if (turn == 2) { // Player B turn
 
 				if (checkLocation(x, y, pA.location)){
 					boardU[x][y] = "b";
 				} else if (checkLocation(x, y, pB.location)){
 					boardU[x][y] = "a";
 				} else if ((x == c1[0]) && (y == c1[1])){
-				boardU[x][y] = "coin1";
-				} else if ((x == c2[0]) && (y == c2[1])){
 					boardU[x][y] = "coin2";
+				} else if ((x == c2[0]) && (y == c2[1])){
+					boardU[x][y] = "coin1";
 				} else {
 					boardU[x][y] = "blank";
 				}
-			} else {
+			} else { // Coin turn
 
 				if ((x == c1[0]) && (y == c1[1])){
-					boardU[x][y] = "coin1";
-				} else if ((x == c2[0]) && (y == c2[1])){
 					boardU[x][y] = "coin2";
+				} else if ((x == c2[0]) && (y == c2[1])){
+					boardU[x][y] = "coin1";
 				} else if (checkLocation(x, y, pA.location)){
 					boardU[x][y] = "b";
 				} else if (checkLocation(x, y, pB.location)){
@@ -113,17 +112,22 @@ function updateBoard(pA, pB, c1, c2, boardU, turn){
 			
 		}
 	}
-	return boardU
+
+	return boardU;
 }
 
 function overlap(turn){
+
+	//Function to prevent overlapping pieces on turn pass
 	switch (turn){
-		case 0:
+		case 0: // Player A turn
 			for (i = 0; i < pieceList.length; i ++){
 				if (i !== 0){
 					for (a = 0; a < pieceList[0].location.length; a ++){
 						for (b = 0; b < pieceList[i].location.length; b++){
-							if (pieceList[0].location[a][0] == pieceList[i].location[b][0] && pieceList[0].location[a][1] == pieceList[i].location[b][1]){
+							if ((i == 1 || i == 3) && (pieceList[0].location[a][0] == pieceList[i].location[b][1] && pieceList[0].location[a][1] == pieceList[i].location[b][0])){
+								return false;
+							} else if ((i == 2) && pieceList[0].location[a][0] == pieceList[i].location[b][0] && pieceList[0].location[a][1] == pieceList[i].location[b][1]){
 								return false;
 							}
 						}
@@ -131,24 +135,52 @@ function overlap(turn){
 				}
 			}
 			break;
-		case 1:
+		case 1: // Coin turn
+			checkCoin = pieceList[turn].location[pieceList[turn].selectedCoin];
+			console.log(checkCoin);
+			for (a = 0; a < pieceList[0].location.length; a++){
+				console.log(checkCoin, pieceList[0].location[a]);
+				if (checkCoin[0] == pieceList[0].location[a][1] && checkCoin[1] == pieceList[0].location[a][0]){
+					return false;
+				}
+			}
+			for (a = 0; a < pieceList[2].location.length; a++){
+				console.log(checkCoin, pieceList[0].location[a]);
+				if (checkCoin[0] == pieceList[2].location[a][1] && checkCoin[1] == pieceList[2].location[a][0]){
+					return false;
+				}
+			}
 			break;
-		case 2:
+		case 2: // Player B turn
 			for (i = 0; i < pieceList.length; i ++){
 				if (i !== 2){
 					for (a = 0; a < pieceList[2].location.length; a ++){
 						for (b = 0; b < pieceList[i].location.length; b++){
-							console.log("Piece list index : ", i)
-							console.log("Piece list location : ", pieceList[i].location[a]);
-							console.log("Checking coordinate : ", pieceList[2].location[b]);
-							if (pieceList[2].location[a][0] == pieceList[i].location[b][0] && pieceList[2].location[a][1] == pieceList[i].location[b][1]){
+							if ((i == 1 || i == 3) && (pieceList[2].location[a][0] == pieceList[i].location[b][1] && pieceList[2].location[a][1] == pieceList[i].location[b][0])){
+								return false;
+							}else if ((i == 0) && pieceList[2].location[a][0] == pieceList[i].location[b][0] && pieceList[2].location[a][1] == pieceList[i].location[b][1]){
 								return false;
 							}
 						}
 					}
 				}
 			}
-		case 3:
+			break;
+		case 3: // Coin turn
+			checkCoin = pieceList[turn].location[pieceList[turn].selectedCoin];
+			console.log(checkCoin);
+			for (a = 0; a < pieceList[0].location.length; a++){
+				console.log(checkCoin, pieceList[0].location[a]);
+				if (checkCoin[0] == pieceList[0].location[a][1] && checkCoin[1] == pieceList[0].location[a][0]){
+					return false;
+				}
+			}
+			for (a = 0; a < pieceList[2].location.length; a++){
+				console.log(checkCoin, pieceList[0].location[a]);
+				if (checkCoin[0] == pieceList[2].location[a][1] && checkCoin[1] == pieceList[2].location[a][0]){
+					return false;
+				}
+			}
 			break;
 	}
 	return true;
