@@ -6,7 +6,7 @@ This is a small app based on this video by VSauce2.  I made this project to lear
 
 
 
-##Update Nov 20
+## Update Nov 20
 Everything should work in the actual game except for win conditions and reset.  Analytics and information still to be implemented.
 
-##Initial Commit Nov 13
+## Initial Commit Nov 13
