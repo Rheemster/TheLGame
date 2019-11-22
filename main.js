@@ -19,16 +19,32 @@ function keyPressed(event) {
 			//Key W
 			pieceList[turn].move("up");
 			break;
+		case 38:
+			//Arrow up
+			pieceList[turn].move("up");
+			break;
 		case 65:
 			//Key A
+			pieceList[turn].move("left");
+			break;
+		case 37:
+			//Arrow left
 			pieceList[turn].move("left");
 			break;
 		case 83:
 			//Key S
 			pieceList[turn].move("down");
 			break;
+		case 40:
+			//Arrow down
+			pieceList[turn].move("down");
+			break;
 		case 68:
 			//Key D
+			pieceList[turn].move("right");
+			break;
+		case 39:
+			//Arrow right
 			pieceList[turn].move("right");
 			break;
 
@@ -56,10 +72,11 @@ function keyPressed(event) {
 				}
 				if ((turn % 2) == 0){
 					document.getElementById("goal").innerHTML = "Move your L. If you can't move, you lose.";
-					document.getElementById("controls").innerHTML = "F to flip horizontally, R to rotate clockwise, WASD to move, ENTER to confirm.";
+					document.getElementById("controls").innerHTML = "F to flip horizontally, R to rotate clockwise, WASD or ARROW KEYS to move, ENTER to confirm.";
 				} else {
+					coins.confirm();
 					document.getElementById("goal").innerHTML = "You may choose to move a coin.";
-					document.getElementById("controls").innerHTML = "R to toggle selected coin, WASD to move, ENTER to confirm.";
+					document.getElementById("controls").innerHTML = "R to toggle selected coin, WASD or ARROW KEYS to move, ENTER to confirm.";
 				}
 			} else {
 				document.getElementById("goal").innerHTML = "Move to a valid space!";

@@ -6,7 +6,6 @@ function display(boardD){
 
 	//Clear the canvas
 	boardCtx.clearRect(0, 0, canvas.width, canvas.height);
-	console.log(boardD);
 	for (i = 0; i <= 3; i++){
 		for (j = 0; j <= 3; j++){
 			//Dictate what color each circle should be
@@ -117,7 +116,9 @@ function updateBoard(pA, pB, c1, c2, boardU, turn){
 }
 
 function overlap(turn){
-
+	if (turn == 3){
+		turn = 1;
+	}
 	//Function to prevent overlapping pieces on turn pass
 	switch (turn){
 		case 0: // Player A turn
@@ -137,18 +138,18 @@ function overlap(turn){
 			break;
 		case 1: // Coin turn
 			checkCoin = pieceList[turn].location[pieceList[turn].selectedCoin];
-			console.log(checkCoin);
 			for (a = 0; a < pieceList[0].location.length; a++){
-				console.log(checkCoin, pieceList[0].location[a]);
 				if (checkCoin[0] == pieceList[0].location[a][1] && checkCoin[1] == pieceList[0].location[a][0]){
 					return false;
 				}
 			}
 			for (a = 0; a < pieceList[2].location.length; a++){
-				console.log(checkCoin, pieceList[0].location[a]);
 				if (checkCoin[0] == pieceList[2].location[a][1] && checkCoin[1] == pieceList[2].location[a][0]){
 					return false;
 				}
+			}
+			if (checkCoin[0] == pieceList[turn].location[pieceList[turn].otherCoin][0] && checkCoin[1] == pieceList[turn].location[pieceList[turn].otherCoin][1]){
+				return false;
 			}
 			break;
 		case 2: // Player B turn
@@ -163,22 +164,6 @@ function overlap(turn){
 							}
 						}
 					}
-				}
-			}
-			break;
-		case 3: // Coin turn
-			checkCoin = pieceList[turn].location[pieceList[turn].selectedCoin];
-			console.log(checkCoin);
-			for (a = 0; a < pieceList[0].location.length; a++){
-				console.log(checkCoin, pieceList[0].location[a]);
-				if (checkCoin[0] == pieceList[0].location[a][1] && checkCoin[1] == pieceList[0].location[a][0]){
-					return false;
-				}
-			}
-			for (a = 0; a < pieceList[2].location.length; a++){
-				console.log(checkCoin, pieceList[0].location[a]);
-				if (checkCoin[0] == pieceList[2].location[a][1] && checkCoin[1] == pieceList[2].location[a][0]){
-					return false;
 				}
 			}
 			break;
