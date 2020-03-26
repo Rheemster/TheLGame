@@ -31,9 +31,8 @@ header {
 	font-size: 25px;
 }
 #controls{
-	font-size: 13px;
+	font-size: 17px;
 	color: #363636;
-	/*margin-top: px;*/
 
 }
 
@@ -52,9 +51,10 @@ header {
 
 /* Information */
 .button {
+	position: fixed;
 	font-size: 30px;
-	width: 100px;
-	height: 100px;
+	width: 70px;
+	height: 70px;
 	border-radius: 10px;
 	padding: 2px 2px;
 	margin: 2px;
@@ -66,14 +66,53 @@ header {
 	background: #8a8a8a;
 }
 
-#analyze {
-	position: absolute;
-	top: 300px;
-	left: calc(50% + 270px);
+#analytics {
+	left: calc(50% - 200px);
+	top: calc(50% + 300px);
 }
 
-#settings {
-	position: absolute;
-	top: 410px;
-	left: calc(50% + 270px);
+#information {
+	right: calc(50% - 200px);
+	top: calc(50% + 300px);
+}
+
+#player {
+	right: calc(50% - 35px);
+	top: calc(50% + 300px);
+	background-image: url(assets/computer.png);
+	background-size: cover;
+
+}
+
+.overlay {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: rgba(0, 0, 0, 0.5);
+	display: none;
+	height: 100%;
+	width: 100%;
+}
+
+#frontLayer {
+	margin: auto;
+	position: fixed;
+	top: 15%;
+	left: 0px;
+	background: #e3e3e3;
+	height: 70%;
+	width: 100%;
+	opacity: 1;
+	border-radius: 30px;
+}
+
+.infoHeader {
+	padding: 20px;
+	font-size: 40px;
+
+}
+
+.infoPara {
+	padding: 20px;
+	font-size: 20px;
 }

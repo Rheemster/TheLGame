@@ -22,18 +22,43 @@
 		<!--Center-->
 		<div class="middle">
 			<canvas id="gameBoard" width="500" height="500"></canvas>
-			<div id="analyze" class="button">A</div>
-			<div id="settings" class="button">S</div>
+			<button id="analytics" class="button" onclick="analytics()">A</button>
+			<button id="information" class="button" onclick="information()">?</button>
+			<button id="player" class="button" onclick="togglePlayer()"></button>
+		</div>
+
+		<div class="overlay" id="analyticsOverlay">
+			<div id="frontLayer">
+				<h1 id="explanationH" class="infoheader">Under Construction!</h1>
+				<button id="analytics" class="button" onclick="analytics()">OK</button>
+			</div>
+		</div>
+
+		<div class="overlay" id="informationOverlay">
+			<div id="frontLayer">
+				<button id="information" class="button" onclick="information()">OK</button>
+				<h1 id="explanationH" class="infoHeader"> What is this? </h1>
+				<p id="explanationP" class=infoPara> The L Game is an extremely simple strategic game created by Edward de Bono.  It served as the topic for his comprehensive book on strategic thinking "The Five-Day Course in Thinking". </p>
+				<h1 id="whyH" class="infoHeader"> Why did you create this? </h1>
+				<p id="whyP" class=infoPara> The first and foremost point of this project is to learn the basics of CSS, HTML, and JavaScript. </p>
+				<h1 id="nextH" class="infoHeader"> What's next? </h1>
+				<p id="nextP" class="infoPara"> As you may have seen already, the other two buttons next to this one are currently useless.  Interactive analysis of the current board state and the ability to play against a bot will be implemented next. </p>
+				<h1 id="winH" class="infoHeader"> How do I tell if I've won? </h1>
+				<p id="winP" class="infoPara"> If you're playing with a friend, the first player unable to move is the loser.  You can press Q to play again.  If your browser crashes while playing against the AI, you may have won, in which case congratulations!  Otherwise, it may be stuck in a corner.  Either way, you've outsmarted a computer.  You'll need to close and reopen the browser.  </p>
+			</div>
 		</div>
 
 		<!--JavaScript-->
 		
+		<script src="scripts/Bot.js"></script>
+		<script src="scripts/DefaultPiece.js"></script>
 		<script src="scripts/Checks.js"></script>
 		<script src="scripts/Board.js"></script>
 		<script src="scripts/Coins.js"></script>
 		<script src="scripts/LPiece.js"></script>
 		<script src="scripts/Display.js"></script>
 		<script src="scripts/Main.js"></script>
+
 
 
 	</body>
