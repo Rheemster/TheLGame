@@ -1,15 +1,44 @@
 var board = new Board();
 var display = new Display();
+var analyticsOverlay = document.getElementById("analyticsOverlay");
+var informationOverlay = document.getElementById("informationOverlay");
+var changePlayer = document.getElementById("player");
+var player = "computer";
+var botPlayer = new Bot();
 
 board.reset();
 display.draw(board.surface, "gameBoard");
 
-function analytics(){
 
+function analytics(){
+	if (analyticsOverlay.style.display == "block"){
+		analyticsOverlay.style.display = "none";
+	} else {
+		analyticsOverlay.style.display = "block";
+	}
 }
 
-function settings(){
+function information(){
+	if (informationOverlay.style.display == "block"){
+		console.log("toggle none");
+		informationOverlay.style.display = "none";
+	} else {
+		console.log('toggle block');
+		informationOverlay.style.display = "block";
+	}
+}
 
+function togglePlayer(){
+	if (player == "computer"){
+		player = "blueRobot";
+		changePlayer.style.backgroundImage = "url(assets/bluerobot.png)";
+	} else if (player == "blueRobot"){
+		player = "orangeRobot";
+		changePlayer.style.backgroundImage = "url(assets/orangerobot.png)";
+	} else {
+		player = "computer";
+		changePlayer.style.backgroundImage = "url(assets/computer.png)";
+	}
 }
 
 document.addEventListener("keydown", keyPressed, false);
@@ -52,6 +81,7 @@ function keyPressed(event) {
 		case 13:
 			//Enter key: next turn - prevent overlap and change hint message
 			textCase = board.nextTurn();
+
 			if (textCase == "A"){
 				document.getElementById("goal").style.color = "#3b93ff";
 				document.getElementById("goal").innerHTML     = "Move your L. If you can't move, you lose.";

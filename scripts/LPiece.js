@@ -1,56 +1,11 @@
 //L Piece object, contains 4 coordinates for each part of the piece
-
 function LPiece(location){
-	this.location = location;
+	DefaultPiece.call(this, location);
+	LPiece.prototype = Object.create(DefaultPiece.prototype);
+
 	this.rotation = 0;
 	this.flip = false;
-	this.move = function(direction){
-		switch(direction){
-			case "up":
-				for(i = 0; i < this.location.length; i++){ // Iterate through pieces to check if they can move, stop if they can't
-					if ((this.location[i][1] - 1) < 0) {
-						return;
-					}
-				}
-				for(i = 0; i < this.location.length; i++){ // Apply movement if checks are passed
-					this.location[i][1] -= 1;
-				}
-				return;
-
-			case "left":
-				for(i = 0; i < this.location.length; i++){
-					if ((this.location[i][0] - 1) < 0) {
-						return;
-					}
-				}
-				for(i = 0; i < this.location.length; i++){
-					this.location[i][0] -= 1;
-				}
-				return;
-
-			case "down":
-				for(i = 0; i < this.location.length; i++){
-					if ((this.location[i][1] + 1) > 3) {
-						return;
-					}
-				}
-				for(i = 0; i < this.location.length; i++){
-					this.location[i][1] += 1;
-				}
-				return;
-
-			case "right":
-				for(i = 0; i < this.location.length; i++){
-					if ((this.location[i][0] + 1) > 3) {
-						return;
-					}
-				}
-				for(i = 0; i < this.location.length; i++){
-					this.location[i][0] += 1;
-				}
-				return;
-		}
-	}
+	
 
 	this.actionR = function(){ // Rotate function explained in Grid Rotate function
 
@@ -74,7 +29,7 @@ function LPiece(location){
 		for (i = 0; i < this.location.length; i++){ // Check if flip is valid
 			gridFlipped = this.gridFlip(this.location[1][0], this.location[i][0]);
 			if(!(this.location[i][0] + gridFlipped <= 3 && this.location[i][0] + gridFlipped >= 0)){
-				return;
+				return new Error("Can't apply flip");
 			}
 		}
 

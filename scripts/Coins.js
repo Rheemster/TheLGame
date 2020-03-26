@@ -1,7 +1,9 @@
 //Coin object, contains coordinates for both coins keeps track of the currently selected coin
+function Coins(location){
+	
+	DefaultPiece.call(this, location);
+	LPiece.prototype = Object.create(DefaultPiece.prototype);
 
-function Coins(coin0, coin1){
-	this.location = [coin0, coin1];
 	this.selectedCoin = 0;
 	this.otherCoin = 1;
 	this.tempLocation = [this.location[0][0], this.location[0][1]];
